@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_dailyreports</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_dailyreports` (
+  `dailyreportsid` int(11) NOT NULL default '0',
+  `dailyreportsname` varchar(100) default NULL,
+  `dailyreportscomment` varchar(250) default NULL,
+  `dailyreportsstatus` varchar(100) default NULL,
+  `reportsdate` varchar(100) default NULL,
+  `reports_to_id` int(19) NOT NULL default '0',
+  PRIMARY KEY  (`dailyreportsid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_dailyreportscf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_dailyreportscf` (
+  `dailyreportsid` int(11) NOT NULL,
+  PRIMARY KEY  (`dailyreportsid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_drcomments</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_drcomments` (
+  `commentid` int(19) NOT NULL auto_increment,
+  `dailyreportsid` int(11) default NULL,
+  `comments` text,
+  `ownerid` int(19) NOT NULL default '0',
+  `ownertype` varchar(10) default NULL,
+  `createdtime` datetime NOT NULL,
+  PRIMARY KEY  (`commentid`),
+  KEY `fk_1_vtiger_drcomments` (`dailyreportsid`),
+  CONSTRAINT `fk_1_vtiger_drcomments` FOREIGN KEY (`dailyreportsid`) REFERENCES `vtiger_dailyreports` (`dailyreportsid`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>
