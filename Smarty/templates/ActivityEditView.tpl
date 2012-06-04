@@ -161,6 +161,7 @@ var gVTModule = '{$smarty.request.module|@vtlib_purify}';
 								{else}
 									{assign var="visiblecheck" value=""}
 								{/if}
+								{/foreach}
                                                                         <input name="visibility" value="Public" type="checkbox" {$visiblecheck}>{$MOD.LBL_PUBLIC}
 								{/if}
 								</td>
